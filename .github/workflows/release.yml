@@ -1,0 +1,39 @@
+name: Release
+
+# Whenever a tag is pushed do workflow
+on:
+  push:
+    tags:
+      - "v*.*.*" # Tag must be of the same format
+
+jobs:
+    build:
+
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2.4.2
+
+            - name: Setup Node.js environment and build app
+              uses: actions/setup-node@v3.3.0
+              with:
+                node-version: current
+                cache: 'yarn'
+            
+            - name: Install NPM Dependencies 
+              run: yarn install
+
+            - name: Build Application
+              run: yarn build
+
+            - name: Automatic Releases
+              uses: marvinpinto/action-automatic-releases@v1.2.1
+              with:
+                repo_token: "${{ secrets.TOKEN }}"
+                prerelease: false
+                files: bin/*
+
+            - name: Publish to NPM
+              run: yarn publish --access public
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
