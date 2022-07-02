@@ -7,7 +7,7 @@ on:
       - "v*.*.*" # Tag must be of the same format
 
 jobs:
-    build:
+    build_then_publish:
 
         runs-on: ubuntu-latest
         steps:
