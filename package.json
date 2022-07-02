@@ -1,6 +1,6 @@
 {
   "name": "clistream",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Cli app to stream your favorite Movies and TV-Shows",
   "main": "index.js",
   "repository": "https://github.com/Thanatoslayer6/clistream.git",
@@ -8,8 +8,8 @@
   "license": "MIT",
   "bin": "index.js",
   "files": [
-      "index.js",
-      "lib/*"
+    "index.js",
+    "lib/*"
   ],
   "scripts": {
     "build": "pkg .",
